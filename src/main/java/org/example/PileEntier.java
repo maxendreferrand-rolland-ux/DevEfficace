@@ -70,6 +70,7 @@ public class PileEntier {
 
     /**
      * Construit une pile vide avec la capacité argument
+     *
      * @param capacite capacité de la pile à créer
      * @throws IllegalArgumentException levée si la capacité est invalide
      */
@@ -88,6 +89,7 @@ public class PileEntier {
 
     /**
      * Détermine si la pile est pleine
+     *
      * @return un booléen égal à vrai ssi la pile est pleine
      */
     public boolean estPleine() {
@@ -97,6 +99,7 @@ public class PileEntier {
 
     /**
      * Renvoie la valeur du sommet de la pile
+     *
      * @return le sommet de la pile (un entier)
      * @throws IllegalStateException levée si la pile est vide
      */
@@ -111,4 +114,81 @@ public class PileEntier {
         return element[taille - 1];
     }
 
+    /**
+     * Détermine si la pile est vide
+     *
+     * @return un booléen égal à vrai ssi la pile est vide
+     */
+    public boolean estVide() {
+        return taille == 0 ;
+    }
+
+    /**
+     * Empile l'entier argument
+     *
+     * @param n entier à empiler
+     * @throws IllegalStateException levée si la pile est pleine
+     */
+    public void empiler(int n) throws IllegalStateException {
+        if (estPleine()) {
+            throw new IllegalStateException();
+        }
+        element[taille] = n;
+        taille++;
+    }
+
+    /**
+     * Dépile l'élément sommet de la pile
+     *
+     * @throws IllegalStateException levée si la pile est vide
+     */
+    public void depiler() throws IllegalStateException {
+        if (estVide()) {
+            throw new IllegalStateException();
+        }
+        taille--;
+    }
+
+    /**
+     * Renvoie le contenu de la pile sous forme de chaîne de caractères
+     * @return une chaîne représentant la pile, du sommet vers la base
+     */
+    @Override
+    public String toString() {
+        String resultat = "[ sommet = ";
+        for (int i = taille - 1; i >= 0; i--) {
+            resultat = resultat + " " + element[i] + " |";
+        }
+        resultat = resultat + "  ]";
+        return resultat;
+    }
+
+    /**
+     * Détermine si 2 piles ont la même capacité
+     *
+     * @param p1 première pile
+     * @param p2 deuxième pile
+     * @return un booléen égal à vrai ssi p1 et p2 ont la même capacité
+     */
+    public static boolean memeCapacite(PileEntier p1, PileEntier p2) {
+        return p1.capacite == p2.capacite;
+    }
+
+    /**
+     * Détermine si la pile courante est égale à la pile argument
+     * @param autre pile à comparer avec la pile courante
+     * @return un booléen égal à vrai ssi autre est une pile identique
+     */
+    public boolean equals(PileEntier autre) {
+        if (!memeCapacite(this, autre) || this.taille != autre.taille) {
+            return false;
+        }
+        for (int i = 0; i < taille; i++) {
+            if (this.element[i] != autre.element[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
    

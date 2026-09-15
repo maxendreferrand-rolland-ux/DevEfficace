@@ -2,7 +2,7 @@
  * Telephone.java                                               10/15
  */
 
-package gestionexception.pilegenerique;
+package org.example;
 import java.util.Scanner;
 
 /**
