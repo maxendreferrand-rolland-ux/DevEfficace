@@ -5,7 +5,7 @@
  * teste les méthodes de la classe PileEntier
  * TestPile.java                                                09/26
  */
-package org.example;
+
 
 /**
  * Premier programme de test de la classe PileEntier.
